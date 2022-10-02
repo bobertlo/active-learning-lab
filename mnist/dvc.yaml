@@ -1,0 +1,23 @@
+stages:
+  train:
+    cmd: python train.py
+    deps:
+      - dataset.py
+      - train.py
+      - models.py
+      - selection.py
+      - util.py
+    params:
+      - aug
+      - train
+    plots:
+    - plots/loss.json:
+        cache: false
+        template: linear
+        x: train_size
+        y: loss
+    - plots/accuracy.json:
+        cache: false
+        template: linear
+        x: train_size
+        y: acc
