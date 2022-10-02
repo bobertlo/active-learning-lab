@@ -1,0 +1,14 @@
+prep:
+  train_size: 1000
+  seed: 0
+aug:
+  x_shift: 0.025
+  y_shift: 0.025
+  rot: 15
+  zoom_min: 0.9
+  zoom_max: 1.2
+  seed: 0
+train:
+  lr: 0.003
+  bs: 128
+  epochs: 20
