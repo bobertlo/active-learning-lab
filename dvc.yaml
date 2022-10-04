@@ -1,5 +1,5 @@
 stages:
-  train:
+  train_baseline:
     cmd: python train_baseline.py
     deps:
       - dataset.py
@@ -17,6 +17,28 @@ stages:
         x: train_size
         y: loss
     - plots/baseline_cnn_acc.json:
+        cache: false
+        template: linear
+        x: train_size
+        y: acc
+  train_lc:
+    cmd: python train_lc.py
+    deps:
+      - dataset.py
+      - train_lc.py
+      - models.py
+      - util.py
+    params:
+      - prep
+      - aug
+      - train
+    plots:
+    - plots/lc_cnn_loss.json:
+        cache: false
+        template: linear
+        x: train_size
+        y: loss
+    - plots/lc_cnn_acc.json:
         cache: false
         template: linear
         x: train_size

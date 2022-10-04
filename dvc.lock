@@ -10,8 +10,8 @@ stages:
       md5: 1693056f81fe918e2826d48ae10cb52f
       size: 1564
     - path: train_baseline.py
-      md5: 6eef029ff7ed26d4da7ee8e4edac4bf9
-      size: 2267
+      md5: fdc8c39f6f8abf69ee572dfef11e9151
+      size: 2276
     - path: util.py
       md5: c976fc7d913800ba0fb22f74b7379f3c
       size: 326
@@ -33,8 +33,84 @@ stages:
           epochs: 20
     outs:
     - path: plots/baseline_cnn_acc.json
-      md5: aa3ea058f1a5e9b1b51fd8b24aaf2b7c
-      size: 436
+      md5: 1ba033aa007178ac764245621d516ce0
+      size: 489
     - path: plots/baseline_cnn_loss.json
-      md5: 2dff56388d216b88841df81b05cd1af6
-      size: 454
+      md5: dba8d25fd9fa6170d495d3aa4b33b541
+      size: 507
+  train_lc:
+    cmd: python train_lc.py
+    deps:
+    - path: dataset.py
+      md5: 4d25003a3e4766c186c0384fcbd609a2
+      size: 764
+    - path: models.py
+      md5: 1693056f81fe918e2826d48ae10cb52f
+      size: 1564
+    - path: train_lc.py
+      md5: 11db25b65e9078bd34f57d254f09e157
+      size: 2684
+    - path: util.py
+      md5: c976fc7d913800ba0fb22f74b7379f3c
+      size: 326
+    params:
+      params.yaml:
+        aug:
+          x_shift: 0.025
+          y_shift: 0.025
+          rot: 15
+          zoom_min: 0.9
+          zoom_max: 1.2
+          seed: 0
+        prep:
+          train_size: 1000
+          seed: 0
+        train:
+          lr: 0.003
+          bs: 128
+          epochs: 20
+    outs:
+    - path: plots/lc_cnn_acc.json
+      md5: d1d5d56476a41f71168edbec4f0e5c1d
+      size: 725
+    - path: plots/lc_cnn_loss.json
+      md5: 8db4aef61a9fcec499fe73664304394e
+      size: 755
+  train_baseline:
+    cmd: python train_baseline.py
+    deps:
+    - path: dataset.py
+      md5: 4d25003a3e4766c186c0384fcbd609a2
+      size: 764
+    - path: models.py
+      md5: 1693056f81fe918e2826d48ae10cb52f
+      size: 1564
+    - path: train_baseline.py
+      md5: c7848904a768f62640f6645ed6fbff48
+      size: 2298
+    - path: util.py
+      md5: c976fc7d913800ba0fb22f74b7379f3c
+      size: 326
+    params:
+      params.yaml:
+        aug:
+          x_shift: 0.025
+          y_shift: 0.025
+          rot: 15
+          zoom_min: 0.9
+          zoom_max: 1.2
+          seed: 0
+        prep:
+          train_size: 1000
+          seed: 0
+        train:
+          lr: 0.003
+          bs: 128
+          epochs: 20
+    outs:
+    - path: plots/baseline_cnn_acc.json
+      md5: 8dae60cd431ae29f9068ec9010c2b0b3
+      size: 724
+    - path: plots/baseline_cnn_loss.json
+      md5: 03ca5cb55bb12acaf7836f99b4f6b12b
+      size: 753
