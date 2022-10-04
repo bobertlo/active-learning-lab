@@ -48,7 +48,7 @@ stages:
       md5: 1693056f81fe918e2826d48ae10cb52f
       size: 1564
     - path: train_lc.py
-      md5: 11db25b65e9078bd34f57d254f09e157
+      md5: 63d7332abf934db5a9d15100de153a78
       size: 2684
     - path: util.py
       md5: c976fc7d913800ba0fb22f74b7379f3c
@@ -71,11 +71,11 @@ stages:
           epochs: 20
     outs:
     - path: plots/lc_cnn_acc.json
-      md5: d1d5d56476a41f71168edbec4f0e5c1d
-      size: 725
+      md5: b0cfe4bf270c85d7297480adf5c6db18
+      size: 726
     - path: plots/lc_cnn_loss.json
-      md5: 8db4aef61a9fcec499fe73664304394e
-      size: 755
+      md5: 03c68e24e2b244e2c8133f9aa3edd411
+      size: 752
   train_baseline:
     cmd: python train_baseline.py
     deps:

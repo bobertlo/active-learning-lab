@@ -18,7 +18,7 @@ if __name__ == "__main__":
     print(f'train: X{X.shape} y{y.shape}')
     print(f'test:  X{X_test.shape} y{y_test.shape}')
 
-    X_train, X_reserve, y_train, y_reserve = prepare_training_set_random(X, y, train_size=500)
+    X_train, X_reserve, y_train, y_reserve = prepare_training_set_random(X, y, train_size=100)
 
     test_metrics = []
     training_logs = []
