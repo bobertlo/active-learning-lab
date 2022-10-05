@@ -48,8 +48,8 @@ stages:
       md5: 1693056f81fe918e2826d48ae10cb52f
       size: 1564
     - path: train_lc.py
-      md5: 63d7332abf934db5a9d15100de153a78
-      size: 2684
+      md5: 09d97645f46ee1579aed774135789db2
+      size: 3038
     - path: util.py
       md5: c976fc7d913800ba0fb22f74b7379f3c
       size: 326
@@ -68,14 +68,21 @@ stages:
         train:
           lr: 0.003
           bs: 128
-          epochs: 20
+          epochs: 15
+          stages:
+          - size: 100
+            count: 9
+          - size: 500
+            count: 18
+          - size: 1000
+            count: 20
     outs:
     - path: plots/lc_cnn_acc.json
-      md5: b0cfe4bf270c85d7297480adf5c6db18
-      size: 726
+      md5: 60b63b330ab11fbe02e7cd36c188c9f3
+      size: 2308
     - path: plots/lc_cnn_loss.json
-      md5: 03c68e24e2b244e2c8133f9aa3edd411
-      size: 752
+      md5: 5514aad89b0b0b22aab7dc1cdb8eb639
+      size: 2416
   train_baseline:
     cmd: python train_baseline.py
     deps:
@@ -86,8 +93,8 @@ stages:
       md5: 1693056f81fe918e2826d48ae10cb52f
       size: 1564
     - path: train_baseline.py
-      md5: c7848904a768f62640f6645ed6fbff48
-      size: 2298
+      md5: 81bb059ce8bc137d1a3343bf1ef0584b
+      size: 2548
     - path: util.py
       md5: c976fc7d913800ba0fb22f74b7379f3c
       size: 326
@@ -106,11 +113,18 @@ stages:
         train:
           lr: 0.003
           bs: 128
-          epochs: 20
+          epochs: 15
+          stages:
+          - size: 100
+            count: 9
+          - size: 500
+            count: 18
+          - size: 1000
+            count: 20
     outs:
     - path: plots/baseline_cnn_acc.json
-      md5: 8dae60cd431ae29f9068ec9010c2b0b3
-      size: 724
+      md5: 2308e233c07904531d977e1190e8c162
+      size: 2306
     - path: plots/baseline_cnn_loss.json
-      md5: 03ca5cb55bb12acaf7836f99b4f6b12b
-      size: 753
+      md5: 5c2b421e12da7410f0cb93755131d687
+      size: 2413

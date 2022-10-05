@@ -18,47 +18,54 @@ if __name__ == "__main__":
     print(f'train: X{X.shape} y{y.shape}')
     print(f'test:  X{X_test.shape} y{y_test.shape}')
 
-    X_train, X_reserve, y_train, y_reserve = prepare_training_set_random(X, y, train_size=100)
+    
 
+    train_size = 0
     test_metrics = []
     training_logs = []
-    for i in range(15):
-        train_size = 100 + (i * 100)
-        X_valid = X_reserve[:1000]
-        y_valid = y_reserve[:1000]
+    for stage in params['train']['stages']:
+        for i in range(stage['count']):
+            if train_size == 0:
+                train_size = stage['size']
+                X_train, X_reserve, y_train, y_reserve = prepare_training_set_random(X, y, train_size=stage['size'])
+            assert(len(X_train) == train_size)
 
-        print(f"\n### Running Training Size {train_size}:")
-        model, log = train_basic_cnn(X_train, y_train, X_valid, y_valid, params)
+            X_valid = X_reserve[:1000]
+            y_valid = y_reserve[:1000]
 
-        test_scores = model.evaluate(X_test, y_test)
-        print(f"\n### Train Size {train_size} Results:")
-        print("Test loss:    ", test_scores[0])
-        print("Test accuracy:", test_scores[1])
-        print("")
+            print(f"\n### Running Training Size {train_size}:")
+            model, log = train_basic_cnn(X_train, y_train, X_valid, y_valid, params)
 
-        test_metrics.append({
-            "train_size": train_size,
-            "loss": test_scores[0],
-            "accuracy": test_scores[1],
-        })
+            test_scores = model.evaluate(X_test, y_test)
+            print(f"\n### Train Size {train_size} Results:")
+            print("Test loss:    ", test_scores[0])
+            print("Test accuracy:", test_scores[1])
+            print("")
 
-        training_logs.append({
-            "train_size": train_size,
-            "log": log.history,
-        })
+            test_metrics.append({
+                "train_size": train_size,
+                "loss": test_scores[0],
+                "accuracy": test_scores[1],
+            })
+            training_logs.append({
+                "train_size": train_size,
+                "log": log.history,
+            })
 
-        print("### Selecting next samples ...")
-        max_preds = model.predict(X_valid).max(axis=1)
-        sorted_preds = sorted(enumerate(max_preds), key=lambda x:x[1])
-        idxs = [x[0] for x in sorted_preds[:500]]
+            print("### Selecting next samples ...")
+            max_preds = model.predict(X_valid).max(axis=1)
+            sorted_preds = sorted(enumerate(max_preds), key=lambda x:x[1])
+            idxs = [x[0] for x in sorted_preds[:stage['size']]]
 
-        X_new = X_reserve[idxs]
-        y_new = y_reserve[idxs]
-        X_reserve = np.delete(X_reserve, idxs, 0)
-        y_reserve = np.delete(y_reserve, idxs, 0)
+            X_new = X_reserve[idxs]
+            y_new = y_reserve[idxs]
+            X_reserve = np.delete(X_reserve, idxs, 0)
+            y_reserve = np.delete(y_reserve, idxs, 0)
 
-        X_train = np.append(X_train, X_new, axis=0)
-        y_train = np.append(y_train, y_new, axis=0)
+            X_train = np.append(X_train, X_new, axis=0)
+            y_train = np.append(y_train, y_new, axis=0)
+
+            train_size += stage['size']
 
     sizes = []
     accs = []

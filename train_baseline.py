@@ -19,30 +19,38 @@ if __name__ == "__main__":
 
     test_metrics = []
     training_logs = []
-    for train_size in [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500]:
-        print(f"\n### Running Training Size {train_size}:")
-        X_train, X_valid, y_train, y_valid = prepare_training_set_random(X, y, train_size=train_size)
-        if len(X_valid) > train_size:
-            X_valid, y_valid = resample(X_valid, y_valid, n_samples=train_size, stratify=y_valid)
+    train_size = 0
+    for stage in params['train']['stages']:
+        for i in range(stage['count']):
+            if train_size == 0:
+                train_size = stage['size']
+            print(f"\n### Running Training Size {train_size}:")
 
-        model, log = train_basic_cnn(X_train, y_train, X_valid, y_valid, params)
+            X_train, X_valid, y_train, y_valid = prepare_training_set_random(X, y, train_size=train_size)
+            if len(X_valid) > train_size:
+                X_valid, y_valid = resample(X_valid, y_valid, n_samples=train_size, stratify=y_valid)
+            assert(len(X_train) == train_size)
+            
+            model, log = train_basic_cnn(X_train, y_train, X_valid, y_valid, params)
 
-        test_scores = model.evaluate(X_test, y_test)
-        print(f"\n### Train Size {train_size} Results:")
-        print("Test loss:    ", test_scores[0])
-        print("Test accuracy:", test_scores[1])
-        print("")
+            test_scores = model.evaluate(X_test, y_test)
+            print(f"\n### Train Size {train_size} Results:")
+            print("Test loss:    ", test_scores[0])
+            print("Test accuracy:", test_scores[1])
+            print("")
 
-        test_metrics.append({
-            "train_size": train_size,
-            "loss": test_scores[0],
-            "accuracy": test_scores[1],
-        })
+            test_metrics.append({
+                "train_size": train_size,
+                "loss": test_scores[0],
+                "accuracy": test_scores[1],
+            })
 
-        training_logs.append({
-            "train_size": train_size,
-            "log": log.history,
-        })
+            training_logs.append({
+                "train_size": train_size,
+                "log": log.history,
+            })
+
+            train_size += stage['size']
 
     sizes = []
     accs = []
