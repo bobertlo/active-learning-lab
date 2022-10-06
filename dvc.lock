@@ -42,17 +42,17 @@ stages:
     cmd: python train_lc.py
     deps:
     - path: dataset.py
-      md5: 4d25003a3e4766c186c0384fcbd609a2
-      size: 764
+      md5: 6fade36e5cef1dba538d1e87b946f6e9
+      size: 772
     - path: models.py
       md5: 1693056f81fe918e2826d48ae10cb52f
       size: 1564
     - path: train_lc.py
-      md5: 09d97645f46ee1579aed774135789db2
-      size: 3038
+      md5: f090c3057ea4f7b8b707bea85411e322
+      size: 2208
     - path: util.py
-      md5: c976fc7d913800ba0fb22f74b7379f3c
-      size: 326
+      md5: da53e018f570aceadd7e151a6ec9f96b
+      size: 1127
     params:
       params.yaml:
         aug:
@@ -74,30 +74,28 @@ stages:
             count: 9
           - size: 500
             count: 18
-          - size: 1000
-            count: 20
     outs:
     - path: plots/lc_cnn_acc.json
-      md5: 60b63b330ab11fbe02e7cd36c188c9f3
-      size: 2308
+      md5: 1aee6502557f44dc61d22cdce2d31cda
+      size: 1311
     - path: plots/lc_cnn_loss.json
-      md5: 5514aad89b0b0b22aab7dc1cdb8eb639
-      size: 2416
+      md5: f0bc49fd5fd4db1d2212e71408c673fd
+      size: 1346
   train_baseline:
     cmd: python train_baseline.py
     deps:
     - path: dataset.py
-      md5: 4d25003a3e4766c186c0384fcbd609a2
-      size: 764
+      md5: 6fade36e5cef1dba538d1e87b946f6e9
+      size: 772
     - path: models.py
       md5: 1693056f81fe918e2826d48ae10cb52f
       size: 1564
     - path: train_baseline.py
-      md5: 81bb059ce8bc137d1a3343bf1ef0584b
-      size: 2548
+      md5: 26f8f24e3524d0cab437c4fce094aea4
+      size: 1756
     - path: util.py
-      md5: c976fc7d913800ba0fb22f74b7379f3c
-      size: 326
+      md5: da53e018f570aceadd7e151a6ec9f96b
+      size: 1127
     params:
       params.yaml:
         aug:
@@ -119,12 +117,10 @@ stages:
             count: 9
           - size: 500
             count: 18
-          - size: 1000
-            count: 20
     outs:
     - path: plots/baseline_cnn_acc.json
-      md5: 2308e233c07904531d977e1190e8c162
-      size: 2306
+      md5: 2917095672b6a622e36437e5cbcf7247
+      size: 1313
     - path: plots/baseline_cnn_loss.json
-      md5: 5c2b421e12da7410f0cb93755131d687
-      size: 2413
+      md5: e64e030088777725d9c3ee0d04bc2443
+      size: 1345

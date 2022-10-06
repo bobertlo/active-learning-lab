@@ -1,13 +1,7 @@
-from tensorflow import keras
-from tensorflow.keras import layers
-from util import load_params, print_params
+from util import load_params, print_params, write_plots
 from dataset import load_mnist_dataset, prepare_training_set_random
 from models import train_basic_cnn
 
-from sklearn.utils import resample
-import pandas as pd
-import os
-import json
 import numpy as np
 
 if __name__ == "__main__":
@@ -17,8 +11,6 @@ if __name__ == "__main__":
     (X, y), (X_test, y_test) = load_mnist_dataset()
     print(f'train: X{X.shape} y{y.shape}')
     print(f'test:  X{X_test.shape} y{y_test.shape}')
-
-    
 
     train_size = 0
     test_metrics = []
@@ -67,29 +59,4 @@ if __name__ == "__main__":
 
             train_size += stage['size']
 
-    sizes = []
-    accs = []
-    losses = []
-    for x in test_metrics:
-        sizes.append(x['train_size'])
-        losses.append(x['loss'])
-        accs.append(x['accuracy'])
-    os.makedirs("plots", exist_ok=True)
-
-    loss_metrics = []
-    for x in test_metrics:
-        loss_metrics.append({
-            "train_size": x['train_size'],
-            "loss": x['loss'],
-        })
-    with open("plots/lc_cnn_loss.json", "w") as outfile:
-        json.dump(loss_metrics, outfile)
-
-    acc_metrics = []
-    for x in test_metrics:
-        acc_metrics.append({
-            "train_size": x['train_size'],
-            "acc": x['accuracy'],
-        })
-    with open("plots/lc_cnn_acc.json", "w") as outfile:
-        json.dump(acc_metrics, outfile)
+            write_plots(test_metrics, "lc_cnn")
