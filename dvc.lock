@@ -68,17 +68,19 @@ stages:
         train:
           lr: 0.003
           bs: 128
-          epochs: 20
+          epochs: 30
           stages:
           - size: 100
             count: 9
+          - size: 500
+            count: 16
     outs:
     - path: plots/lc_cnn_acc.json
-      md5: f97e11631c2668351036817b4c48f32e
-      size: 431
+      md5: 8c7c14822104be75dda95c1fc1e621b5
+      size: 1213
     - path: plots/lc_cnn_loss.json
-      md5: aba811909f7a8decf917e29e1a1fd8dd
-      size: 440
+      md5: 3175b5f436498900ad6fc1785aaf6278
+      size: 1244
   train_baseline:
     cmd: python train_baseline.py
     deps:
@@ -109,17 +111,19 @@ stages:
         train:
           lr: 0.003
           bs: 128
-          epochs: 20
+          epochs: 30
           stages:
           - size: 100
             count: 9
+          - size: 500
+            count: 16
     outs:
     - path: plots/baseline_cnn_acc.json
-      md5: 5bc1576bdba30dfe12813a4b6191be08
-      size: 430
+      md5: 27a60a6fdd78d062f05f7acd808be674
+      size: 1212
     - path: plots/baseline_cnn_loss.json
-      md5: 721e06bafa2936529584ee32bac83858
-      size: 441
+      md5: c1cc235325d162388e7580464bca0c4f
+      size: 1243
   train_sm:
     cmd: python train_sm.py
     deps:
@@ -150,17 +154,19 @@ stages:
         train:
           lr: 0.003
           bs: 128
-          epochs: 20
+          epochs: 30
           stages:
           - size: 100
             count: 9
+          - size: 500
+            count: 16
     outs:
     - path: plots/sm_cnn_acc.json
-      md5: f40dc56ddda2656c2fcfdf01f85ef7ba
-      size: 429
+      md5: ecaee9c9144f3106f7af99663e9fdc4c
+      size: 1213
     - path: plots/sm_cnn_loss.json
-      md5: ae089c99d89948f839ef0da1fb1aec3e
-      size: 441
+      md5: 677061cd2a24ae72ce08046888990db7
+      size: 1243
   train_ent:
     cmd: python train_ent.py
     deps:
@@ -191,14 +197,16 @@ stages:
         train:
           lr: 0.003
           bs: 128
-          epochs: 20
+          epochs: 30
           stages:
           - size: 100
             count: 9
+          - size: 500
+            count: 16
     outs:
     - path: plots/ent_cnn_acc.json
-      md5: 83ea855c95f31722cee1804209ca6c4a
-      size: 433
+      md5: 1bd3905dab9e8b5a2e7c9f7f17697398
+      size: 1214
     - path: plots/ent_cnn_loss.json
-      md5: 09209e314a73d85ad7d4b92ea651d0bb
-      size: 441
+      md5: 0180a6d12a343bb8e5a9b3ff8aaeeecf
+      size: 1244
