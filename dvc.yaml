@@ -43,3 +43,47 @@ stages:
         template: linear
         x: train_size
         y: acc
+  train_sm:
+    cmd: python train_sm.py
+    deps:
+      - dataset.py
+      - train_lc.py
+      - models.py
+      - util.py
+    params:
+      - prep
+      - aug
+      - train
+    plots:
+    - plots/sm_cnn_loss.json:
+        cache: false
+        template: linear
+        x: train_size
+        y: loss
+    - plots/sm_cnn_acc.json:
+        cache: false
+        template: linear
+        x: train_size
+        y: acc
+  train_ent:
+    cmd: python train_ent.py
+    deps:
+      - dataset.py
+      - train_lc.py
+      - models.py
+      - util.py
+    params:
+      - prep
+      - aug
+      - train
+    plots:
+    - plots/ent_cnn_loss.json:
+        cache: false
+        template: linear
+        x: train_size
+        y: loss
+    - plots/ent_cnn_acc.json:
+        cache: false
+        template: linear
+        x: train_size
+        y: acc
