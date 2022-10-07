@@ -45,7 +45,7 @@ if __name__ == "__main__":
             })
 
             print("### Selecting next samples ...")
-            max_preds = model.predict(X_valid).max(axis=1)
+            max_preds = model.predict(X_reserve).max(axis=1)
             sorted_preds = sorted(enumerate(max_preds), key=lambda x:x[1])
             idxs = [x[0] for x in sorted_preds[:stage['size']]]
 

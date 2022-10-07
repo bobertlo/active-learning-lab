@@ -53,7 +53,7 @@ if __name__ == "__main__":
             })
 
             print("### Selecting next samples ...")
-            preds = model.predict(X_valid)
+            preds = model.predict(X_reserve)
             pred_margins = np.apply_along_axis(entropy, 1, preds)
 
             sorted_preds = sorted(enumerate(pred_margins), key=lambda x:x[1], reverse=True)
