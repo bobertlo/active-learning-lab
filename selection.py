@@ -61,7 +61,7 @@ class MarginSelector:
         self.X_reserve = np.delete(self.X_reserve, idxs, 0)
         self.y_reserve = np.delete(self.y_reserve, idxs, 0)
 
-        X_train = np.append(X_train, X_new, axis=0)
-        y_train = np.append(y_train, y_new, axis=0)
+        self.X_train = np.append(self.X_train, X_new, axis=0)
+        self.y_train = np.append(self.y_train, y_new, axis=0)
 
-        return X_train, self.X_reserve, y_train, self.y_reserve
+        return self.X_train, self.X_reserve, self.y_train, self.y_reserve
