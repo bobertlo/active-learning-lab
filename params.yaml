@@ -14,11 +14,11 @@ train:
   epochs: 30
   stages:
     # 250-2000
-    - size: 100
-      count: 9 # first round initializes with stage size
+    - size: 1000
+      count: 19 # first round initializes with stage size
     # 1500-10000
-    - size: 500
-      count: 16
+    # - size: 500
+    #   count: 16
     # 11000 - 30000
     # - size: 1000
     #   count: 20
