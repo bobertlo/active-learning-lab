@@ -1,88 +1,23 @@
 stages:
-  train_baseline:
-    cmd: python train_baseline.py
+  train:
+    cmd: python train.py
     deps:
       - dataset.py
-      - train_baseline.py
+      - train.py
       - models.py
+      - selection.py
       - util.py
     params:
       - prep
       - aug
       - train
     plots:
-    - plots/baseline_cnn_loss.json:
+    - plots/loss.json:
         cache: false
         template: linear
         x: train_size
         y: loss
-    - plots/baseline_cnn_acc.json:
-        cache: false
-        template: linear
-        x: train_size
-        y: acc
-  train_lc:
-    cmd: python train_lc.py
-    deps:
-      - dataset.py
-      - train_lc.py
-      - models.py
-      - util.py
-    params:
-      - prep
-      - aug
-      - train
-    plots:
-    - plots/lc_cnn_loss.json:
-        cache: false
-        template: linear
-        x: train_size
-        y: loss
-    - plots/lc_cnn_acc.json:
-        cache: false
-        template: linear
-        x: train_size
-        y: acc
-  train_sm:
-    cmd: python train_sm.py
-    deps:
-      - dataset.py
-      - train_lc.py
-      - models.py
-      - util.py
-    params:
-      - prep
-      - aug
-      - train
-    plots:
-    - plots/sm_cnn_loss.json:
-        cache: false
-        template: linear
-        x: train_size
-        y: loss
-    - plots/sm_cnn_acc.json:
-        cache: false
-        template: linear
-        x: train_size
-        y: acc
-  train_ent:
-    cmd: python train_ent.py
-    deps:
-      - dataset.py
-      - train_lc.py
-      - models.py
-      - util.py
-    params:
-      - prep
-      - aug
-      - train
-    plots:
-    - plots/ent_cnn_loss.json:
-        cache: false
-        template: linear
-        x: train_size
-        y: loss
-    - plots/ent_cnn_acc.json:
+    - plots/accuracy.json:
         cache: false
         template: linear
         x: train_size

@@ -1,20 +1,23 @@
 schema: '2.0'
 stages:
   train:
-    cmd: python train_baseline.py
+    cmd: python train.py
     deps:
     - path: dataset.py
       md5: 4d25003a3e4766c186c0384fcbd609a2
       size: 764
     - path: models.py
-      md5: 1693056f81fe918e2826d48ae10cb52f
-      size: 1564
-    - path: train_baseline.py
-      md5: fdc8c39f6f8abf69ee572dfef11e9151
-      size: 2276
+      md5: cb3f442381702f8c7065b8cce4252946
+      size: 3843
+    - path: selection.py
+      md5: ec000c3aaa839b3d215b251fde42cbee
+      size: 2431
+    - path: train.py
+      md5: fdd4853f78226ed871a289268b58eea5
+      size: 2589
     - path: util.py
-      md5: c976fc7d913800ba0fb22f74b7379f3c
-      size: 326
+      md5: e485ebc186b2d402328fd613c149ab83
+      size: 1106
     params:
       params.yaml:
         aug:
@@ -25,19 +28,23 @@ stages:
           zoom_max: 1.2
           seed: 0
         prep:
-          train_size: 1000
           seed: 0
         train:
           lr: 0.003
           bs: 128
-          epochs: 20
+          epochs: 10
+          selector: random
+          init_size: 1000
+          stages:
+          - size: 100
+            count: 5
     outs:
-    - path: plots/baseline_cnn_acc.json
-      md5: 1ba033aa007178ac764245621d516ce0
-      size: 489
-    - path: plots/baseline_cnn_loss.json
-      md5: dba8d25fd9fa6170d495d3aa4b33b541
-      size: 507
+    - path: plots/accuracy.json
+      md5: a9f6cb00162feb48e1a4b31b9c48b328
+      size: 293
+    - path: plots/loss.json
+      md5: 1b99c751c061a6f1550ebacf3f12761c
+      size: 307
   train_lc:
     cmd: python train_lc.py
     deps:

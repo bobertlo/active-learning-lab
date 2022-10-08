@@ -13,7 +13,7 @@ def print_params(params):
         for p in params[group]:
             print(f'  {p}: {params[group][p]}')
 
-def write_plots(test_metrics, prefix):
+def write_plots(test_metrics):
     sizes = []
     accs = []
     losses = []
@@ -29,7 +29,7 @@ def write_plots(test_metrics, prefix):
             "train_size": x['train_size'],
             "loss": x['loss'],
         })
-    with open(f"plots/{prefix}_loss.json", "w") as outfile:
+    with open(f"plots/loss.json", "w") as outfile:
         json.dump(loss_metrics, outfile)
 
     acc_metrics = []
@@ -38,5 +38,5 @@ def write_plots(test_metrics, prefix):
             "train_size": x['train_size'],
             "acc": x['accuracy'],
         })
-    with open(f"plots/{prefix}_acc.json", "w") as outfile:
+    with open(f"plots/accuracy.json", "w") as outfile:
         json.dump(acc_metrics, outfile)
