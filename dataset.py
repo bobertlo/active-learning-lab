@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 
 def load_mnist_dataset():
     num_classes = 10
-    (X_train, y_train), (X_test, y_test) = keras.datasets.fashion_mnist.load_data()
+    (X_train, y_train), (X_test, y_test) = keras.datasets.mnist.load_data()
     X_train = X_train.astype("float32") / 255
     X_test = X_test.astype("float32") / 255
     X_train = np.expand_dims(X_train, -1)

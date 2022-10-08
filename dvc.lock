@@ -42,8 +42,8 @@ stages:
     cmd: python train_lc.py
     deps:
     - path: dataset.py
-      md5: 6fade36e5cef1dba538d1e87b946f6e9
-      size: 772
+      md5: 4d25003a3e4766c186c0384fcbd609a2
+      size: 764
     - path: models.py
       md5: cb3f442381702f8c7065b8cce4252946
       size: 3843
@@ -74,17 +74,17 @@ stages:
             count: 19
     outs:
     - path: plots/lc_cnn_acc.json
-      md5: 011ade267eb075cf130ec64ba5cb9bac
+      md5: b181b1dbd597ba2e7b562f2ae376276c
       size: 940
     - path: plots/lc_cnn_loss.json
-      md5: 577b79e25a4ddc66ad0794bdaef0c061
-      size: 963
+      md5: 4d8dc0b0bc49b4fcde577ccf34c4ab2b
+      size: 989
   train_baseline:
     cmd: python train_baseline.py
     deps:
     - path: dataset.py
-      md5: 6fade36e5cef1dba538d1e87b946f6e9
-      size: 772
+      md5: 4d25003a3e4766c186c0384fcbd609a2
+      size: 764
     - path: models.py
       md5: cb3f442381702f8c7065b8cce4252946
       size: 3843
@@ -115,17 +115,17 @@ stages:
             count: 19
     outs:
     - path: plots/baseline_cnn_acc.json
-      md5: c746b095df1473da27243596ec0f1a1c
-      size: 938
+      md5: a9e57eb628a2f5a52a4af92eeb183511
+      size: 937
     - path: plots/baseline_cnn_loss.json
-      md5: 431dad445fe6948fcbaad33748aededc
-      size: 964
+      md5: 954fda6b9d24e6e0480d650c438970bd
+      size: 983
   train_sm:
     cmd: python train_sm.py
     deps:
     - path: dataset.py
-      md5: 6fade36e5cef1dba538d1e87b946f6e9
-      size: 772
+      md5: 4d25003a3e4766c186c0384fcbd609a2
+      size: 764
     - path: models.py
       md5: cb3f442381702f8c7065b8cce4252946
       size: 3843
@@ -156,17 +156,17 @@ stages:
             count: 19
     outs:
     - path: plots/sm_cnn_acc.json
-      md5: d55188a44448cf5ca03c5a2733b8f042
-      size: 937
+      md5: a66d7f4a11039f367fd4c8838446c5d0
+      size: 939
     - path: plots/sm_cnn_loss.json
-      md5: 250c8171f075ca25287027870bc49dff
-      size: 968
+      md5: c3606cead250a6a2cbf9ab06bd210897
+      size: 990
   train_ent:
     cmd: python train_ent.py
     deps:
     - path: dataset.py
-      md5: 6fade36e5cef1dba538d1e87b946f6e9
-      size: 772
+      md5: 4d25003a3e4766c186c0384fcbd609a2
+      size: 764
     - path: models.py
       md5: cb3f442381702f8c7065b8cce4252946
       size: 3843
@@ -197,8 +197,8 @@ stages:
             count: 19
     outs:
     - path: plots/ent_cnn_acc.json
-      md5: b0e0ea5b05bf7aaedeee6a04a6831cf2
-      size: 936
+      md5: 6587a86d928d1088ca8b91f4cd9fecce
+      size: 938
     - path: plots/ent_cnn_loss.json
-      md5: 093643219fd3bbad9c459a69ef6cf14e
-      size: 962
+      md5: 7091cf5f2db4da0b72bf21f983f5fecc
+      size: 990
