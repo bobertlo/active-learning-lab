@@ -60,7 +60,7 @@ if __name__ == "__main__":
             write_plots(test_metrics)
 
             print("### Selecting next samples ...")
-            X_train, X_reseve, y_train, y_reserve = selector.select(model, size=stage['size'])
+            X_train, X_reserve, y_train, y_reserve = selector.select(model, size=stage['size'])
             selector.print()
     
     model, log = train_basic_cnn(X, y, X_test, y_test, params)

@@ -10,7 +10,7 @@ aug:
 train:
   lr: 0.003
   bs: 128
-  epochs: 10
+  epochs: 30
   selector: random
   init_size: 1000
   stages:
