@@ -1,6 +1,5 @@
 from tensorflow import keras
 import numpy as np
-from sklearn.model_selection import train_test_split
 
 def load_mnist_dataset():
     num_classes = 10
@@ -13,11 +12,3 @@ def load_mnist_dataset():
     y_test = keras.utils.to_categorical(y_test, num_classes)
 
     return (X_train, y_train), (X_test, y_test)
-
-def prepare_training_set_random(X, y, train_size=.2, seed=0):
-    return train_test_split(
-        X, y, 
-        train_size=train_size,
-        random_state=seed,
-        stratify=y
-        )

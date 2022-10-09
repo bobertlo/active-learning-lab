@@ -2,7 +2,7 @@ from util import load_params, print_params, write_plots
 from dataset import load_mnist_dataset
 from models import train_basic_cnn
 
-from selection import BaselineSelector, MarginSelector
+from selection import BaselineSelector, LeastConfidenceSelector, SmallestMarginSelector, MaxEntropySelector
 
 import numpy as np
 
@@ -25,8 +25,12 @@ if __name__ == "__main__":
 
     if selector_name == 'random':
         selector = BaselineSelector(X, y, train_size=selector_init_size)
+    elif selector_name == 'lc':
+        selector = LeastConfidenceSelector(X, y, train_size=selector_init_size)
     elif selector_name == 'sm':
-        selector = MarginSelector(X, y, train_size=selector_init_size)
+        selector = SmallestMarginSelector(X, y, train_size=selector_init_size)
+    elif selector_name == 'ent':
+        selector = MaxEntropySelector(X, y, train_size=selector_init_size)
     else:
         raise ValueError(f"selector name '{selector_name}' not defined")
     
