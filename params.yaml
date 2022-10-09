@@ -11,10 +11,10 @@ train:
   lr: 0.003
   bs: 128
   epochs: 30
-  selector: random
+  selector: sm
   init_size: 2000
   stages:
     - size: 2000
       count: 9
     - size: 5000
-      count: 4
+      count: 7
