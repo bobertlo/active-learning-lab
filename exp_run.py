@@ -22,8 +22,8 @@ if __name__ == "__main__":
     source_branch = "main"
     exp_name = "mnist2"
 
-    for seed in [0]:
-        for method in ['random', 'sm']:
+    for seed in range(5):
+        for method in ['random', 'lc', 'sm', 'ent']:
             run_experiment(exp_name, method, seed, source_branch=source_branch)
 
     run_cmd(f'git checkout {source_branch}')
