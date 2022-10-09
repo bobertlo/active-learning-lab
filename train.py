@@ -34,10 +34,18 @@ if __name__ == "__main__":
     print("\n### Initialed Dataset:")
     selector.print()
 
+    first_run = True
     test_metrics = []
     training_logs = []
     for stage in params['train']['stages']:
         for i in range(stage['count']):
+            if first_run:
+                first_run = False
+            else:
+                print("### Selecting next samples ...")
+                X_train, X_reserve, y_train, y_reserve = selector.select(model, size=stage['size'])
+                selector.print()
+            
             X_valid, y_valid = X_reserve, y_reserve
             if len(X_valid) > 5000:
                 X_valid = X_valid[:5000]
@@ -58,10 +66,6 @@ if __name__ == "__main__":
                 "accuracy": test_scores[1],
             })
             write_plots(test_metrics)
-
-            print("### Selecting next samples ...")
-            X_train, X_reserve, y_train, y_reserve = selector.select(model, size=stage['size'])
-            selector.print()
     
     model, log = train_basic_cnn(X, y, X_test, y_test, params)
     test_scores = model.evaluate(X_test, y_test)
