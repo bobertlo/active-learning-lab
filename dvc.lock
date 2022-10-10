@@ -28,12 +28,12 @@ stages:
           zoom_max: 1.2
           seed: 0
         prep:
-          seed: 1
+          seed: 2
         train:
           lr: 0.003
           bs: 128
           epochs: 30
-          selector: ent
+          selector: random
           init_size: 2000
           stages:
           - size: 2000
@@ -44,10 +44,10 @@ stages:
             count: 2
     outs:
     - path: plots/accuracy.json
-      md5: f2cdd3cab9d0bb996b95ba62097e9fb3
+      md5: 4fef7af984ac4c99cd1d6cf72f2794fa
       size: 595
     - path: plots/loss.json
-      md5: b4eb69ffbef6f789ce13962b4ccb77ac
+      md5: a8d35bc12fa09fcfc888372f2c6de9cd
       size: 613
   train_lc:
     cmd: python train_lc.py
