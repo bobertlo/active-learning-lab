@@ -10,5 +10,5 @@ Starting with a small random sample of 5000 labeled images, I trained a CNN mode
 - *Smallest Margin*: Selecting the samples with the lowest margin between the first and second highest softmax outputs.
 - *Maximum Entropy*: Selecting the samples with the highest entropy in softmax outputs.
 
-A control group was which selected more samples randomly from the remaining pool was also included, and each group was tested 5 times.
+A control group was included which selects samples randomly from the remaining pool, and each group was tested 5 times.
 For each iteration a new CNN is trained from scratch on the dataset with the newly added samples.
