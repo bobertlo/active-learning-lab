@@ -68,4 +68,5 @@ if __name__ == "__main__":
     plt.ylabel("Accuracy")
     plt.xlabel("Training Samples")
     plt.yticks([0.975, 0.98, 0.985, 0.99, 0.995])
+    plt.title("Model Accuracy vs Training Set Size")
     plt.savefig("plot.png")
