@@ -40,8 +40,8 @@ def load_metrics(method, seed):
     return df
 
 if __name__ == "__main__":
-    source_branch = "main"
-    exp_name = "mnist2"
+    source_branch = "fashion1"
+    exp_name = "fashion1"
 
     metrics = None
     for seed in range(5):

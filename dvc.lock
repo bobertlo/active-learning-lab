@@ -4,14 +4,14 @@ stages:
     cmd: python train.py
     deps:
     - path: dataset.py
-      md5: d9771229affa30c70e5720ebf1a575af
-      size: 517
+      md5: 6f7bc2f6353dfdc4ff2ffcfe1b343b79
+      size: 525
     - path: models.py
       md5: cb3f442381702f8c7065b8cce4252946
       size: 3843
     - path: selection.py
-      md5: 902806a397b40abe50bbacb7be96d764
-      size: 4939
+      md5: c3c9d0e65b60e629d23268c8b6885e6e
+      size: 3609
     - path: train.py
       md5: ed1ec28ddffb9ae9cb9bf51a6207d45d
       size: 2994
@@ -28,12 +28,12 @@ stages:
           zoom_max: 1.2
           seed: 0
         prep:
-          seed: 4
+          seed: 0
         train:
           lr: 0.003
           bs: 128
           epochs: 30
-          selector: ent
+          selector: random
           init_size: 2000
           stages:
           - size: 2000
@@ -41,14 +41,14 @@ stages:
           - size: 5000
             count: 4
           - size: 10000
-            count: 1
+            count: 2
     outs:
     - path: plots/accuracy.json
-      md5: 5b1478bbee17a73c2d3b2e3a88d03a2c
-      size: 545
+      md5: 7d9603b6f8a171326cb1f5c43eefbd73
+      size: 596
     - path: plots/loss.json
-      md5: c0a7012e402cb6f4c385a36f5b8f1ed7
-      size: 576
+      md5: 45b098babb1bb6e9d94c5e79c583dc97
+      size: 613
   train_lc:
     cmd: python train_lc.py
     deps:
