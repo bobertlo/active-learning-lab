@@ -59,6 +59,19 @@ if __name__ == "__main__":
     metrics.to_csv("metrics.csv")
 
     print("generating plot ...")
+
+    def metric_label(x):
+        if x == 'random':
+            return "Random Baseline"
+        elif x == 'lc':
+            return "Least Confidence"
+        elif x == 'sm':
+            return "Smallest Margin"
+        elif x == 'ent':
+            return "Max Entropy"
+
+    metrics['method'] = metrics['method'].map(metric_label)
+
     plt.figure(figsize=(12,5))
     fig = sns.lineplot(metrics, 
         x='size', 
@@ -69,4 +82,5 @@ if __name__ == "__main__":
     plt.xlabel("Training Samples")
     plt.yticks([0.975, 0.98, 0.985, 0.99, 0.995])
     plt.title("Model Accuracy vs Training Set Size")
+    plt.legend(title="Selection Method")
     plt.savefig("plot.png")
