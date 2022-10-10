@@ -1,5 +1,5 @@
 prep:
-  seed: 0
+  seed: 1
 aug:
   x_shift: 0.025
   y_shift: 0.025
@@ -11,7 +11,7 @@ train:
   lr: 0.003
   bs: 128
   epochs: 30
-  selector: ent
+  selector: random
   init_size: 2000
   stages:
   - size: 2000
