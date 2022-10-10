@@ -1,6 +1,8 @@
 import os
 import json
 import pandas as pd
+from matplotlib import pyplot as plt
+import seaborn as sns
 
 def run_cmd(cmd):
     print(f"### Running Command: {cmd}")
@@ -55,3 +57,15 @@ if __name__ == "__main__":
 
     print("saving metrics to metrics.csv")
     metrics.to_csv("metrics.csv")
+
+    print("generating plot ...")
+    plt.figure(figsize=(12,5))
+    fig = sns.lineplot(metrics, 
+        x='size', 
+        y='accuracy',
+        hue='method'
+        )
+    plt.ylabel("Accuracy")
+    plt.xlabel("Training Samples")
+    plt.yticks([0.975, 0.98, 0.985, 0.99, 0.995])
+    plt.savefig("plot.png")
