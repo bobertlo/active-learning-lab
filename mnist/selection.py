@@ -65,9 +65,10 @@ class StratifiedLeastConfidenceSelector(Selector):
         pred_confidence = predictions.max(axis=1)
         sorted_preds = sorted(enumerate(zip(pred_classes, pred_confidence)), key=lambda x: x[1][1])
         
+        samples_per_class = int(size / 10)
         idxs = []
         for i in range(10):
-            idxs.extend([x for x in sorted_preds if x[1][0] == i][:100])
+            idxs.extend([x[0] for x in sorted_preds if x[1][0] == i][:samples_per_class])
         
         self.label_samples(idxs)
 
@@ -90,6 +91,28 @@ class SmallestMarginSelector(Selector):
         return self.X_train, self.X_reserve, self.y_train, self.y_reserve
 
 
+class StratifiedSmallestMarginSelector(Selector):
+    def select(self, model, size=1000):
+        def margin(x):
+            sx = sorted(x, reverse=True)
+            return sx[0] - sx[1]
+
+        predictions = model.predict(self.X_reserve)
+
+        pred_classes = np.apply_along_axis(np.argmax, 1, predictions)
+        pred_margins = np.apply_along_axis(margin, 1, predictions)
+        sorted_preds = sorted(enumerate(zip(pred_classes, pred_margins)), key=lambda x: x[1][1])
+
+        samples_per_class = int(size / 10)
+        idxs = []
+        for i in range(10):
+            idxs.extend([x[0] for x in sorted_preds if x[1][0] == i][:samples_per_class])
+        
+        idxs = [x[0] for x in sorted_preds[:size]]
+        self.label_samples(idxs)
+
+        return self.X_train, self.X_reserve, self.y_train, self.y_reserve
+
 class MaxEntropySelector(Selector):
     def select(self, model, size=1000):
         def entropy(x):
@@ -106,6 +129,31 @@ class MaxEntropySelector(Selector):
 
         sorted_preds = sorted(enumerate(entropies), key=lambda x: x[1], reverse=True)
         idxs = [x[0] for x in sorted_preds[:size]]
+        self.label_samples(idxs)
+
+        return self.X_train, self.X_reserve, self.y_train, self.y_reserve
+
+class StratifiedMaxEntropySelector(Selector):
+    def select(self, model, size=1000):
+        def entropy(x):
+            def h(x):
+                if x == 0:
+                    return 0
+                return x * np.log2(x)
+
+            y = np.apply_along_axis(h, 0, [x])
+            return -np.sum(y)
+
+        predictions = model.predict(self.X_reserve)
+
+        pred_classes = np.apply_along_axis(np.argmax, 1, predictions)
+        pred_entropies = np.apply_along_axis(entropy, 1, predictions)
+        sorted_preds = sorted(enumerate(zip(pred_classes, pred_entropies)), key=lambda x: x[1][1], reverse=True)
+
+        samples_per_class = int(size / 10)
+        idxs = []
+        for i in range(10):
+            idxs.extend([x[0] for x in sorted_preds if x[1][0] == i][:samples_per_class])
         self.label_samples(idxs)
 
         return self.X_train, self.X_reserve, self.y_train, self.y_reserve

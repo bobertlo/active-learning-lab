@@ -4,20 +4,20 @@ stages:
     cmd: python train.py
     deps:
     - path: dataset.py
-      md5: d9771229affa30c70e5720ebf1a575af
-      size: 517
+      md5: bc836afca61648752dcf34065288450c
+      size: 718
     - path: models.py
-      md5: cb3f442381702f8c7065b8cce4252946
-      size: 3843
+      md5: ed8b204dfff3f51aae19102fe0aded36
+      size: 2071
     - path: selection.py
-      md5: c3c9d0e65b60e629d23268c8b6885e6e
-      size: 3609
+      md5: 7e30b9ad412f1dfc7191e2289ca397a7
+      size: 5415
     - path: train.py
-      md5: ed1ec28ddffb9ae9cb9bf51a6207d45d
-      size: 2994
+      md5: cb3d0a82ace778683d73992cf1823272
+      size: 3910
     - path: util.py
-      md5: e485ebc186b2d402328fd613c149ab83
-      size: 1106
+      md5: fdff41fed3a879154b06a986c19083ba
+      size: 1178
     params:
       params.yaml:
         aug:
@@ -27,28 +27,27 @@ stages:
           zoom_min: 0.9
           zoom_max: 1.2
           seed: 0
-        prep:
-          seed: 0
         train:
+          dataset: mnist
+          seed: 0
           lr: 0.003
           bs: 128
           epochs: 30
-          selector: lc
-          init_size: 2000
+          selector: strat_sm
+          init_size: 500
+          run_full: false
           stages:
-          - size: 2000
-            count: 5
-          - size: 5000
+          - size: 500
             count: 4
-          - size: 10000
-            count: 2
+          - size: 1000
+            count: 3
     outs:
     - path: plots/accuracy.json
-      md5: 71e342b50f4b1fcd5a774d5630a8e84b
-      size: 596
+      md5: 7be69429898c08178553500e675a12ac
+      size: 342
     - path: plots/loss.json
-      md5: b046cd51ec102d567c681e1134ea439b
-      size: 628
+      md5: f7f71bf29fdde89222698ba66cbb5145
+      size: 356
   train_lc:
     cmd: python train_lc.py
     deps:

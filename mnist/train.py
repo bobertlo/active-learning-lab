@@ -8,6 +8,8 @@ from selection import (
     SmallestMarginSelector,
     MaxEntropySelector,
     StratifiedLeastConfidenceSelector,
+    StratifiedSmallestMarginSelector,
+    StratifiedMaxEntropySelector
 )
 
 import numpy as np
@@ -45,6 +47,10 @@ if __name__ == "__main__":
         selector = MaxEntropySelector(X, y, train_size=selector_init_size, seed=seed)
     elif selector_name == "strat_lc":
         selector = StratifiedLeastConfidenceSelector(X, y, train_size=selector_init_size, seed=seed)
+    elif selector_name == "strat_sm":
+        selector = StratifiedSmallestMarginSelector(X, y, train_size=selector_init_size, seed=seed)
+    elif selector_name == "strat_ent":
+        selector = StratifiedMaxEntropySelector(X, y, train_size=selector_init_size, seed=seed)
     else:
         raise ValueError(f"selector name '{selector_name}' not defined")
 
@@ -89,19 +95,20 @@ if __name__ == "__main__":
             )
             write_plots(test_metrics)
 
-    print(f"### Running Training Size {len(X_train)}")
-    model, log = train_basic_cnn(X, y, X_test, y_test, params)
-    test_scores = model.evaluate(X_test, y_test)
-    print(f"\n### Full Train/Test Results:")
-    print("Test loss:    ", test_scores[0])
-    print("Test accuracy:", test_scores[1])
-    print("")
+    if params['train']['run_full']:
+        print(f"### Running Training Size {len(X_train)}")
+        model, log = train_basic_cnn(X, y, X_test, y_test, params)
+        test_scores = model.evaluate(X_test, y_test)
+        print(f"\n### Full Train/Test Results:")
+        print("Test loss:    ", test_scores[0])
+        print("Test accuracy:", test_scores[1])
+        print("")
 
-    test_metrics.append(
-        {
-            "train_size": len(X),
-            "loss": test_scores[0],
-            "accuracy": test_scores[1],
-        }
-    )
-    write_plots(test_metrics)
+        test_metrics.append(
+            {
+                "train_size": len(X),
+                "loss": test_scores[0],
+                "accuracy": test_scores[1],
+            }
+        )
+        write_plots(test_metrics)
