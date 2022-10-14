@@ -7,6 +7,7 @@ from selection import (
     LeastConfidenceSelector,
     SmallestMarginSelector,
     MaxEntropySelector,
+    StratifiedLeastConfidenceSelector,
 )
 
 import numpy as np
@@ -42,6 +43,8 @@ if __name__ == "__main__":
         )
     elif selector_name == "ent":
         selector = MaxEntropySelector(X, y, train_size=selector_init_size, seed=seed)
+    elif selector_name == "strat_lc":
+        selector = StratifiedLeastConfidenceSelector(X, y, train_size=selector_init_size, seed=seed)
     else:
         raise ValueError(f"selector name '{selector_name}' not defined")
 

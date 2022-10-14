@@ -57,6 +57,22 @@ class LeastConfidenceSelector(Selector):
 
         return self.X_train, self.X_reserve, self.y_train, self.y_reserve
 
+class StratifiedLeastConfidenceSelector(Selector):
+    def select(self, model, size=1000):
+        predictions = model.predict(self.X_reserve)
+
+        pred_classes = np.apply_along_axis(np.argmax, 1, predictions)
+        pred_confidence = predictions.max(axis=1)
+        sorted_preds = sorted(enumerate(zip(pred_classes, pred_confidence)), key=lambda x: x[1][1])
+        
+        idxs = []
+        for i in range(10):
+            idxs.extend([x for x in sorted_preds if x[1][0] == i][:100])
+        
+        self.label_samples(idxs)
+
+        return self.X_train, self.X_reserve, self.y_train, self.y_reserve
+
 
 class SmallestMarginSelector(Selector):
     def select(self, model, size=1000):
