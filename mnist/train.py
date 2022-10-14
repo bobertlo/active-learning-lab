@@ -9,7 +9,7 @@ from selection import (
     MaxEntropySelector,
     StratifiedLeastConfidenceSelector,
     StratifiedSmallestMarginSelector,
-    StratifiedMaxEntropySelector
+    StratifiedMaxEntropySelector,
 )
 
 import numpy as np
@@ -46,11 +46,17 @@ if __name__ == "__main__":
     elif selector_name == "ent":
         selector = MaxEntropySelector(X, y, train_size=selector_init_size, seed=seed)
     elif selector_name == "strat_lc":
-        selector = StratifiedLeastConfidenceSelector(X, y, train_size=selector_init_size, seed=seed)
+        selector = StratifiedLeastConfidenceSelector(
+            X, y, train_size=selector_init_size, seed=seed
+        )
     elif selector_name == "strat_sm":
-        selector = StratifiedSmallestMarginSelector(X, y, train_size=selector_init_size, seed=seed)
+        selector = StratifiedSmallestMarginSelector(
+            X, y, train_size=selector_init_size, seed=seed
+        )
     elif selector_name == "strat_ent":
-        selector = StratifiedMaxEntropySelector(X, y, train_size=selector_init_size, seed=seed)
+        selector = StratifiedMaxEntropySelector(
+            X, y, train_size=selector_init_size, seed=seed
+        )
     else:
         raise ValueError(f"selector name '{selector_name}' not defined")
 
@@ -95,7 +101,7 @@ if __name__ == "__main__":
             )
             write_plots(test_metrics)
 
-    if params['train']['run_full']:
+    if params["train"]["run_full"]:
         print(f"### Running Training Size {len(X_train)}")
         model, log = train_basic_cnn(X, y, X_test, y_test, params)
         test_scores = model.evaluate(X_test, y_test)
