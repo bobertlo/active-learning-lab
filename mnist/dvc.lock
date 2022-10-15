@@ -10,11 +10,11 @@ stages:
       md5: ed8b204dfff3f51aae19102fe0aded36
       size: 2071
     - path: selection.py
-      md5: 7e30b9ad412f1dfc7191e2289ca397a7
-      size: 5415
+      md5: a8020c9a2a43a687fbf2dd7285229a3a
+      size: 5648
     - path: train.py
-      md5: cb3d0a82ace778683d73992cf1823272
-      size: 3910
+      md5: 9515b7a0b43e8d773d7165ae4924189a
+      size: 3977
     - path: util.py
       md5: fdff41fed3a879154b06a986c19083ba
       size: 1178
@@ -28,26 +28,32 @@ stages:
           zoom_max: 1.2
           seed: 0
         train:
-          dataset: mnist
+          dataset: fashion_mnist
           seed: 0
           lr: 0.003
           bs: 128
           epochs: 30
-          selector: strat_sm
+          selector: random
           init_size: 500
-          run_full: false
+          run_full: true
           stages:
           - size: 500
             count: 4
           - size: 1000
+            count: 2
+          - size: 2000
             count: 3
+          - size: 5000
+            count: 4
+          - size: 10000
+            count: 2
     outs:
     - path: plots/accuracy.json
-      md5: 7be69429898c08178553500e675a12ac
-      size: 342
+      md5: 9188398d62db70a57d9bb4c1f8fe6740
+      size: 788
     - path: plots/loss.json
-      md5: f7f71bf29fdde89222698ba66cbb5145
-      size: 356
+      md5: 8e0da500f768c1f5b7fbcf33dfda7e85
+      size: 808
   train_lc:
     cmd: python train_lc.py
     deps:
