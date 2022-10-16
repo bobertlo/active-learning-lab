@@ -33,7 +33,7 @@ stages:
           lr: 0.003
           bs: 128
           epochs: 30
-          selector: strat_sm
+          selector: strat_ent
           init_size: 500
           run_full: true
           stages:
@@ -49,10 +49,10 @@ stages:
             count: 2
     outs:
     - path: plots/accuracy.json
-      md5: 963c2acf2ab24dd360b80236fbd25e55
-      size: 789
+      md5: 4c6ad5147d7e992e20cdb825ad4462f9
+      size: 791
     - path: plots/loss.json
-      md5: afaa8df744fbe7399788d0489cbb48f3
+      md5: d06a344c1d853373b10b76108e323c4d
       size: 809
   train_lc:
     cmd: python train_lc.py
