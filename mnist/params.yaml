@@ -11,7 +11,7 @@ train:
   lr: 0.003
   bs: 128
   epochs: 30
-  selector: strat_lc
+  selector: strat_sm
   init_size: 500
   run_full: true
   stages:
