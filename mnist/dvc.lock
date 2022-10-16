@@ -29,11 +29,11 @@ stages:
           seed: 0
         train:
           dataset: fashion_mnist
-          seed: 1
+          seed: 2
           lr: 0.003
           bs: 128
           epochs: 30
-          selector: strat_ent
+          selector: random
           init_size: 500
           run_full: true
           stages:
@@ -49,11 +49,11 @@ stages:
             count: 2
     outs:
     - path: plots/accuracy.json
-      md5: 4c6ad5147d7e992e20cdb825ad4462f9
+      md5: 5b05c0c35d0eae9c267b91101b1443b2
       size: 791
     - path: plots/loss.json
-      md5: d06a344c1d853373b10b76108e323c4d
-      size: 809
+      md5: eb8d57260afa4ad50641daa019bfe3aa
+      size: 812
   train_lc:
     cmd: python train_lc.py
     deps:

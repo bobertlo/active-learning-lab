@@ -7,11 +7,11 @@ aug:
   seed: 0
 train:
   dataset: fashion_mnist
-  seed: 1
+  seed: 2
   lr: 0.003
   bs: 128
   epochs: 30
-  selector: strat_ent
+  selector: random
   init_size: 500
   run_full: true
   stages:
