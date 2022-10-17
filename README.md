@@ -6,7 +6,7 @@ This experiment is a simple simulation of different active learning methods to d
 
 ![experiment results](images/exp1-mnist-fashion.png)
 
-Starting with a small random sample of 5000 labeled images, I trained a CNN model and used it to select the next samples with the following strategies:
+Starting with a small random sample of 500 labeled images, I trained a CNN model and used it to select the next samples with the following strategies:
 
 - *Least Confidence*: Selecting samples where the highest softmax output had the lowest values.
 - *Smallest Margin*: Selecting the samples with the lowest margin between the first and second highest softmax outputs.
