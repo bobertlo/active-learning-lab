@@ -2,6 +2,8 @@
 
 This experiment is a simple simulation of different active learning methods to demonstrate their performance using the MNIST dataset.
 
+![experiment results](images/exp1-mnist-fashion.png)
+
 Starting with a small random sample of 5000 labeled images, I trained a CNN model and used it to select the next samples with the following strategies:
 
 - *Least Confidence*: Selecting samples where the highest softmax output had the lowest values.

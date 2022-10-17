@@ -54,7 +54,8 @@ if __name__ == "__main__":
     metrics = None
     for dataset in ["fashion_mnist"]:
         for seed in range(5):
-            for method in ["random", "lc", "sm", "ent", "strat_lc", "strat_sm", "strat_ent"]:
+            # for method in ["random", "lc", "sm", "ent", "strat_lc", "strat_sm", "strat_ent"]:
+            for method in ['random', 'lc', 'sm', 'ent']:
                 run_experiment(
                     exp_name, dataset, method, seed, source_branch=source_branch
                 )
@@ -81,11 +82,11 @@ if __name__ == "__main__":
         elif x == "ent":
             return "Max Entropy"
         elif x == "strat_lc":
-            return "Least Confidence"
+            return "Least Confidence Stratified"
         elif x == "strat_sm":
-            return "Smallest Margin"
+            return "Smallest Margin Stratified"
         elif x == "strat_ent":
-            return "Max Entropy"
+            return "Max Entropy Stratified"
 
     metrics["method"] = metrics["method"].map(metric_label)
 
@@ -98,7 +99,7 @@ if __name__ == "__main__":
     )
     plt.ylabel("Accuracy")
     plt.xlabel("Training Samples")
-    plt.yticks([0.975, 0.98, 0.985, 0.99, 0.995])
+    # plt.yticks([0.975, 0.98, 0.985, 0.99, 0.995])
     plt.title("Fashion MNIST")
     plt.legend(title="Selection Method")
     plt.savefig("plot.png")
