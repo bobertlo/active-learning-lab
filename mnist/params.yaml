@@ -7,7 +7,7 @@ aug:
   seed: 0
 train:
   dataset: fashion_mnist
-  seed: 0
+  seed: 4
   lr: 0.003
   bs: 128
   epochs: 30
